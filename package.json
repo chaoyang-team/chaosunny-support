@@ -93,7 +93,8 @@
     "webpack-cli": "^4.4.0",
     "wechat-enterprise": "^0.1.1",
     "yamljs": "^0.3.0",
-    "zulip-js": "^2.0.4"
+    "zulip-js": "^2.0.4",
+    "postcss-loader": "^5.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
