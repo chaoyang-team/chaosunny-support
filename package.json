@@ -94,7 +94,8 @@
     "wechat-enterprise": "^0.1.1",
     "yamljs": "^0.3.0",
     "zulip-js": "^2.0.4",
-    "postcss-loader": "^5.2.0"
+    "postcss-loader": "^5.2.0",
+    "sass-loader": "^11.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
@@ -111,12 +112,10 @@
     "migrate": "^1.5.0",
     "nodemon": "^1.17.5",
     "postcss": "^8.2.9",
-    "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
     "prompts": "^2.4.2",
     "prop-types": "^15.7.2",
     "sass": "^1.32.8",
-    "sass-loader": "^11.0.1",
     "supertest": "^3.0.0",
     "webpack-dev-server": "^3.11.2"
   },
