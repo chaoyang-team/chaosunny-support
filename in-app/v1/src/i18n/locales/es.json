@@ -1,0 +1,101 @@
+{
+  "general": {
+    "commit": "Entregar",
+    "loading": "Cargando",
+    "select_hint": "Por favor, seleccione",
+    "collapse": "Colapso",
+    "expand": "Expanda",
+    "number": "Número de referencia",
+    "status": "Estado",
+    "title": "Título",
+    "description": "Descripción",
+    "attachment": "Adjunto",
+    "send": "Enviar",
+    "confirm": "Confirmar",
+    "no_data": "Sin datos disponibles",
+    "call_center": "Centro de atención al cliente",
+    "click_to_upload": "Haga clic para subir",
+    "content_deleted": "Este contenido ha sido eliminado.",
+    "not_found": "Este contenido no existe",
+    "cancel": "Cancelar",
+    "update_time": "Hora de actualización",
+    "update_date": "Fecha de actualización"
+  },
+  "home": {
+    "empty": "No se ha configurado contenido para mostrar en la categoría actual."
+  },
+  "feedback": {
+    "suffix": "Retroalimentación",
+    "action": "Enviar comentarios",
+    "record": "Registro de comentarios",
+    "submit": "Enviar comentarios",
+    "title": "Contactar con servicio al cliente",
+    "submit_ticket": "Enviar ticket",
+    "wait_time": "Tiempo de espera estimado:",
+    "hours": "{{value}} horas",
+    "minutes": "{{value}} minutos"
+  },
+  "faqs": {
+    "showAll": "Ver todo",
+    "similar": "Preguntas similares"
+  },
+  "notice": {
+    "title": "Aviso",
+    "hint": "Si el contenido anterior no te ha sido de ayuda"
+  },
+  "auth": {
+    "not_logged_in_text": "Se ha detectado que no has iniciado sesión, por favor inicia sesión y vuelve a intentarlo."
+  },
+  "category": {
+    "select_hint": "Seleccionar tema",
+    "select_hint_home": "Seleccione el tipo de problema",
+    "faqs": "Artículos relacionados",
+    "title": "Categoría de preguntas"
+  },
+  "topic": {
+    "title": "Preguntas Frecuentes",
+    "hint": "Si el contenido anterior no te ha sido de ayuda, puedes"
+  },
+  "ticket": {
+    "record": "Registro de problemas",
+    "no_record": "No hay registros de problemas",
+    "no_more_record": "No hay más registros",
+    "create": {
+      "success": "Éxito en el envío",
+      "success_text": "$t(ticket.create.success), procesaremos su solicitud lo más pronto posible"
+    },
+    "detail": "Detalles del problema",
+    "resolved": "Procesado",
+    "unResolved": "En proceso",
+    "contact": "Contactar al servicio de atención al cliente"
+  },
+  "reply": {
+    "staff_title": "Servicio al cliente oficial",
+    "my_title": "Usted",
+    "input_content_hint": "Por favor, ingrese el contenido"
+  },
+  "status": {
+    "new": "Pendiente de procesar",
+    "waiting_on_staff": "Esperando respuesta del servicio al cliente",
+    "waiting_on_customer": "Esperando respuesta del usuario",
+    "resolved": "Resuelto"
+  },
+  "evaluation": {
+    "title": "Evaluación del servicio y comentarios",
+    "useful": "útil",
+    "useless": "Sin utilidad",
+    "content_hint": "Instrucciones adicionales (opcional)",
+    "created_text": "Su opinión ha sido recibida, ¡gracias por sus comentarios!",
+    "change": "Modificar evaluación"
+  },
+  "validation": {
+    "required": "El contenido no puede estar vacío",
+    "attachment_too_big": "Fallo en la subida",
+    "attachment_too_big_text": "El tamaño del archivo adjunto no puede superar los {{size}} {{unit}}",
+    "attachment_not_uploaded": "Por favor, espere a que se complete la carga del archivo.",
+    "number_required": "No puede contener caracteres no numéricos",
+    "invalid": "Entrada no válida"
+  },
+  "network_error": "Error de conexión, por favor intente reconectar",
+  "network_error.retry": "Reconectar"
+}

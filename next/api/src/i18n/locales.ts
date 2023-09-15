@@ -1,0 +1,17 @@
+export const LOCALES = [
+  'zh-cn',
+  'zh-tw',
+  'zh-hk',
+  'en',
+  'ja',
+  'ko',
+  'id',
+  'th',
+  'de',
+  'fr',
+  'ru',
+  'es',
+  'pt',
+  'tr',
+  'vi',
+];

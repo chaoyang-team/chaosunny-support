@@ -1,0 +1,101 @@
+{
+  "general": {
+    "commit": "Absenden",
+    "loading": "Ladevorgang",
+    "select_hint": "Bitte wählen",
+    "collapse": "Einsturz",
+    "expand": "Erweitern",
+    "number": "Ref. Nummer",
+    "status": "Status",
+    "title": "Titel",
+    "description": "Beschreibung",
+    "attachment": "Anhang",
+    "send": "Senden",
+    "confirm": "Bestätigen",
+    "no_data": "Keine Daten vorhanden",
+    "call_center": "Kundenservicezentrum",
+    "click_to_upload": "Klicken Sie zum Hochladen",
+    "content_deleted": "Der Inhalt wurde gelöscht.",
+    "not_found": "Der Inhalt existiert nicht",
+    "cancel": "Abbrechen",
+    "update_time": "Aktualisierungszeit",
+    "update_date": "Aktualisierungsdatum"
+  },
+  "home": {
+    "empty": "In der aktuellen Kategorie sind keine Inhalte zur Anzeige konfiguriert."
+  },
+  "feedback": {
+    "suffix": "Feedback",
+    "action": "Gib Feedback",
+    "record": "Feedback-Aufzeichnung",
+    "submit": "Geben Sie Feedback ein",
+    "title": "Kundenservice kontaktieren",
+    "submit_ticket": "Ticket einreichen",
+    "wait_time": "Voraussichtliche Wartezeit:",
+    "hours": "{{value}} Stunden",
+    "minutes": "{{value}} Minuten"
+  },
+  "faqs": {
+    "showAll": "Alle anzeigen",
+    "similar": "Ähnliche Fragen"
+  },
+  "notice": {
+    "title": "Bekanntmachung",
+    "hint": "Falls die obigen Informationen Ihnen nicht weitergeholfen haben"
+  },
+  "auth": {
+    "not_logged_in_text": "Es wurde festgestellt, dass Sie nicht angemeldet sind. Bitte melden Sie sich an und versuchen Sie es erneut."
+  },
+  "category": {
+    "select_hint": "Thema auswählen",
+    "select_hint_home": "Wählen Sie den Problem-Typ",
+    "faqs": "Verwandte Artikel",
+    "title": "Fragenkategorien"
+  },
+  "topic": {
+    "title": "Häufig gestellte Fragen",
+    "hint": "Falls die obigen Informationen nicht hilfreich für dich waren, kannst du"
+  },
+  "ticket": {
+    "record": "Fragenprotokoll",
+    "no_record": "Keine Probleme",
+    "no_more_record": "Keine weiteren Aufzeichnungen",
+    "create": {
+      "success": "Erfolgreich abgeschickt",
+      "success_text": "$t(ticket.create.success), wir werden uns so schnell wie möglich darum kümmern"
+    },
+    "detail": "Fragendetails",
+    "resolved": "Bearbeitet",
+    "unResolved": "In Bearbeitung",
+    "contact": "Kundenservice kontaktieren"
+  },
+  "reply": {
+    "staff_title": "Offizieller Kundenservice",
+    "my_title": "Sie",
+    "input_content_hint": "Bitte Inhalt eingeben"
+  },
+  "status": {
+    "new": "In Bearbeitung",
+    "waiting_on_staff": "Warten auf Antwort vom Kundenservice",
+    "waiting_on_customer": "Warten auf Benutzerantwort",
+    "resolved": "Gelöst"
+  },
+  "evaluation": {
+    "title": "Servicebewertung und Feedback",
+    "useful": "Nützlich",
+    "useless": "Nutzlos",
+    "content_hint": "Ergänzende Informationen (optional)",
+    "created_text": "Ihr Feedback wurde erhalten, vielen Dank für Ihr Feedback!",
+    "change": "Bewertung ändern"
+  },
+  "validation": {
+    "required": "Der Inhalt darf nicht leer sein",
+    "attachment_too_big": "Hochladen fehlgeschlagen",
+    "attachment_too_big_text": "Anhanggröße darf nicht größer als {{size}} {{unit}} sein",
+    "attachment_not_uploaded": "Bitte warten Sie, bis der Anhang vollständig hochgeladen ist",
+    "number_required": "Darf keine Nicht-Ziffern-Zeichen enthalten",
+    "invalid": "Eingabe ungültig"
+  },
+  "network_error": "Netzwerkfehler, bitte versuchen Sie erneut zu verbinden.",
+  "network_error.retry": "Wiederverbinden"
+}

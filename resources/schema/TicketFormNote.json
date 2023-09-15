@@ -1,0 +1,26 @@
+{
+  "schema": {
+    "objectId": { "type": "String" },
+    "ACL": { "type": "ACL" },
+    "createdAt": { "type": "Date" },
+    "updatedAt": { "type": "Date" },
+    "name": { "type": "String", "v": 2, "required": false, "hidden": false, "read_only": false },
+    "active": { "type": "Boolean", "v": 2, "required": false, "hidden": false, "read_only": false },
+    "defaultLanguage": {
+      "type": "String",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false
+    }
+  },
+  "permissions": {
+    "create": { "roles": [], "users": [] },
+    "find": { "roles": [], "users": [] },
+    "get": { "roles": [], "users": [] },
+    "update": { "roles": [], "users": [] },
+    "delete": { "roles": [], "users": [] },
+    "add_fields": { "roles": [], "users": [] }
+  },
+  "indexes": []
+}

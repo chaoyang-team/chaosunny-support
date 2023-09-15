@@ -1,0 +1,103 @@
+{
+  "schema": {
+    "updatedAt": {
+      "type": "Date"
+    },
+    "content_HTML": {
+      "type": "String",
+      "v": 2
+    },
+    "ACL": {
+      "type": "ACL",
+      "default": {
+        "*": {
+          "read": true,
+          "write": true
+        }
+      }
+    },
+    "content": {
+      "type": "String"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "createdAt": {
+      "type": "Date"
+    },
+    "deletedAt": {
+      "type": "Date",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "author": {
+      "type": "Pointer",
+      "className": "_User"
+    },
+    "ticket": {
+      "type": "Pointer",
+      "className": "Ticket"
+    },
+    "files": {
+      "type": "Array"
+    },
+    "isCustomerService": {
+      "type": "Boolean"
+    },
+    "internal": {
+      "type": "Boolean",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "edited": {
+      "type": "Boolean"
+    }
+  },
+  "permissions": {
+    "create": {
+      "onlySignInUsers": true,
+      "users": [],
+      "roles": []
+    },
+    "find": {
+      "roles": [],
+      "users": [],
+      "*": true
+    },
+    "get": {
+      "roles": [],
+      "users": [],
+      "*": true
+    },
+    "update": {
+      "roles": [],
+      "users": [],
+      "onlySignInUsers": true
+    },
+    "delete": {
+      "roles": [],
+      "users": [],
+      "onlySignInUsers": true
+    },
+    "add_fields": {
+      "roles": [],
+      "users": [],
+      "onlySignInUsers": true
+    }
+  },
+  "indexes": [
+    {
+      "v": 2,
+      "key": {
+        "ticket.$id": -1
+      },
+      "name": "-user-ticket.$id_-1",
+      "ns": "-.Reply",
+      "background": true
+    }
+  ]
+}

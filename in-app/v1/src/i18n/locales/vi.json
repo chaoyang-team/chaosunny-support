@@ -1,0 +1,101 @@
+{
+  "general": {
+    "commit": "nộp",
+    "loading": "Đang tải",
+    "select_hint": "Vui lòng chọn",
+    "collapse": "Sụp đổ",
+    "expand": "Mở rộng",
+    "number": "Số tham chiếu",
+    "status": "Trạng thái",
+    "title": "Tiêu đề",
+    "description": "Mô tả",
+    "attachment": "Tệp đính kèm",
+    "send": "Gửi",
+    "confirm": "Xác nhận",
+    "no_data": "Tạm không có dữ liệu",
+    "call_center": "Trung tâm dịch vụ khách hàng",
+    "click_to_upload": "Nhấp vào tải lên",
+    "content_deleted": "Nội dung đã bị xóa",
+    "not_found": "Nội dung này không tồn tại",
+    "cancel": "Huỷ bỏ",
+    "update_time": "Thời gian cập nhật",
+    "update_date": "Ngày cập nhật"
+  },
+  "home": {
+    "empty": "Hiện tại chưa cấu hình nội dung hiển thị trong danh mục này"
+  },
+  "feedback": {
+    "suffix": "Phản hồi",
+    "action": "Gửi Phản Hồi",
+    "record": "Ghi nhận phản hồi",
+    "submit": "Gửi phản hồi",
+    "title": "Liên hệ Dịch vụ Khách hàng",
+    "submit_ticket": "Gửi Tính năng",
+    "wait_time": "Thời gian chờ ước tính:",
+    "hours": "{{value}} giờ",
+    "minutes": "{{value}} phút"
+  },
+  "faqs": {
+    "showAll": "Xem tất cả",
+    "similar": "Tương tự câu hỏi"
+  },
+  "notice": {
+    "title": "Thông báo",
+    "hint": "Nếu nội dung trên không giúp ích cho bạn"
+  },
+  "auth": {
+    "not_logged_in_text": "Phát hiện bạn chưa đăng nhập tài khoản, vui lòng đăng nhập và thử lại"
+  },
+  "category": {
+    "select_hint": "Chọn Chủ đề",
+    "select_hint_home": "Chọn loại câu hỏi",
+    "faqs": "Bài viết liên quan",
+    "title": "Phân loại câu hỏi"
+  },
+  "topic": {
+    "title": "Câu hỏi thường gặp",
+    "hint": "Nếu nội dung trên không giúp ích cho bạn, bạn có thể"
+  },
+  "ticket": {
+    "record": "Hồ sơ vấn đề",
+    "no_record": "Không có câu hỏi nào được ghi lại",
+    "no_more_record": "Không có thêm bản ghi nào",
+    "create": {
+      "success": "Thành công khi nộp",
+      "success_text": "$t(ticket.create.success), chúng tôi sẽ xử lý cho bạn sớm nhất có thể"
+    },
+    "detail": "Chi tiết vấn đề",
+    "resolved": "Đã xử lý",
+    "unResolved": "Đang xử lý",
+    "contact": "Liên hệ dịch vụ khách hàng"
+  },
+  "reply": {
+    "staff_title": "Dịch vụ chăm sóc khách hàng chính thức",
+    "my_title": "Bạn",
+    "input_content_hint": "Vui lòng nhập nội dung"
+  },
+  "status": {
+    "new": "Chờ xử lý",
+    "waiting_on_staff": "Chờ phản hồi từ dịch vụ khách hàng",
+    "waiting_on_customer": "Chờ người dùng trả lời",
+    "resolved": "Đã giải quyết"
+  },
+  "evaluation": {
+    "title": "Đánh giá dịch vụ và phản hồi",
+    "useful": "Có ích",
+    "useless": "vô ích",
+    "content_hint": "Bổ sung thông tin (không bắt buộc)",
+    "created_text": "Phản hồi của bạn đã được nhận, cảm ơn bạn đã gửi phản hồi!",
+    "change": "Chỉnh sửa đánh giá"
+  },
+  "validation": {
+    "required": "Nội dung không được để trống",
+    "attachment_too_big": "Tải lên thất bại",
+    "attachment_too_big_text": "Kích thước tệp đính kèm không được vượt quá {{size}} {{unit}}",
+    "attachment_not_uploaded": "Vui lòng đợi tệp đính kèm tải lên xong",
+    "number_required": "Không được chứa ký tự không phải số",
+    "invalid": "Nhập không hợp lệ"
+  },
+  "network_error": "Lỗi mạng, vui lòng thử kết nối lại",
+  "network_error.retry": "Kết nối lại"
+}

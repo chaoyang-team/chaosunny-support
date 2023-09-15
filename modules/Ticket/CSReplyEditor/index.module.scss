@@ -1,0 +1,59 @@
+@import '../../style';
+
+.editorContainer {
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  :global(.tab-content) {
+    border: 1px #dee2e6 solid;
+    border-top: none;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    padding: 6px 6px 0;
+  }
+
+  &.internal .editor {
+    background-color: $internal-reply-background;
+  }
+}
+
+.editor {
+  outline: none;
+  appearance: none;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  width: 100%;
+  min-height: 200px;
+  max-height: 500px;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.submit {
+  min-width: 74px;
+}
+
+.quickReplyModal {
+  max-height: calc(100vh - 56px);
+  min-height: 600px;
+  overflow: hidden;
+
+  :global(.modal-body) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .searchQuickReply {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 8px;
+    border-bottom:  1px rgba(0, 0, 0, 0.13) solid;
+  }
+
+  .quickReplyList {
+    overflow-y: auto;
+  }
+}

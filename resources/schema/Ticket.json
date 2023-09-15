@@ -1,0 +1,194 @@
+{
+  "schema": {
+    "category": {
+      "type": "Object"
+    },
+    "privateTags": {
+      "type": "Array",
+      "v": 2,
+      "hidden": true
+    },
+    "parent": {
+      "type": "Pointer",
+      "v": 2,
+      "className": "Ticket",
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "tags": {
+      "type": "Array"
+    },
+    "updatedAt": {
+      "type": "Date"
+    },
+    "group": {
+      "type": "Pointer",
+      "className": "Group"
+    },
+    "content_HTML": {
+      "type": "String"
+    },
+    "replyCount": {
+      "type": "Number"
+    },
+    "ACL": {
+      "type": "ACL"
+    },
+    "content": {
+      "type": "String"
+    },
+    "remindAt": {
+      "type": "Number"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "nid": {
+      "type": "Number",
+      "auto_increment": true,
+      "required": false,
+      "comment": "",
+      "hidden": false,
+      "read_only": false
+    },
+    "createdAt": {
+      "type": "Date"
+    },
+    "organization": {
+      "className": "Organization",
+      "type": "Pointer"
+    },
+    "title": {
+      "type": "String"
+    },
+    "latestReply": {
+      "type": "Object"
+    },
+    "latestCustomerServiceReplyAt": {
+      "type": "Date"
+    },
+    "firstCustomerServiceReplyAt": {
+      "type": "Date"
+    },
+    "joinedCustomerServices": {
+      "type": "Array"
+    },
+    "author": {
+      "className": "_User",
+      "type": "Pointer"
+    },
+    "reporter": {
+      "className": "_User",
+      "type": "Pointer"
+    },
+    "evaluation": {
+      "type": "Object"
+    },
+    "status": {
+      "type": "Number"
+    },
+    "language": {
+      "type": "String",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "files": {
+      "type": "Array"
+    },
+    "assignee": {
+      "className": "_User",
+      "type": "Pointer"
+    },
+    "unreadCount": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false
+    },
+    "metaData": {
+      "type": "Object",
+      "v": 2,
+      "required": false,
+      "hidden": false
+    },
+    "channel": {
+      "type": "String",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    }
+  },
+  "permissions": {
+    "add_fields": {
+      "*": true
+    },
+    "delete": {
+      "*": true
+    },
+    "update": {
+      "*": true
+    },
+    "get": {
+      "*": true
+    },
+    "find": {
+      "*": true
+    },
+    "create": {
+      "*": true
+    }
+  },
+  "indexes": [
+    {
+      "v": 2,
+      "unique": true,
+      "key": {
+        "nid": 1
+      },
+      "name": "-user-nid_1",
+      "ns": "_.Ticket",
+      "background": true
+    },
+    {
+      "v": 2,
+      "key": {
+        "latestCustomerServiceReplyAt": -1
+      },
+      "name": "-user-latestCustomerServiceReplyAt_-1",
+      "ns": "_.Ticket",
+      "background": true
+    },
+    {
+      "v": 2,
+      "key": {
+        "category.objectId": 1
+      },
+      "name": "-user-category.objectId_1",
+      "ns": "_.Ticket",
+      "background": true
+    },
+    {
+      "v": 2,
+      "key": {
+        "author.$id": 1
+      },
+      "name": "-user-author.$id_1",
+      "ns": "_.Ticket",
+      "background": true
+    },
+    {
+      "v": 2,
+      "key": {
+        "assignee.$id": 1
+      },
+      "name": "-user-assignee.$id_1",
+      "ns": "_.Ticket",
+      "background": true
+    }
+  ]
+}

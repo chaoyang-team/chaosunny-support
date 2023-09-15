@@ -1,0 +1,101 @@
+{
+  "general": {
+    "commit": "Gönder",
+    "loading": "Yükleniyor",
+    "select_hint": "Lütfen seçin",
+    "collapse": "Çöküş",
+    "expand": "Genişlet",
+    "number": "Referans Numarası",
+    "status": "Durum",
+    "title": "Başlık",
+    "description": "Açıklama",
+    "attachment": "Ekler",
+    "send": "Gönder",
+    "confirm": "Onayla",
+    "no_data": "Veri yok",
+    "call_center": "Müşteri Hizmetleri Merkezi",
+    "click_to_upload": "Tıkla ve Yükle",
+    "content_deleted": "Bu içerik silinmiştir.",
+    "not_found": "Bu içerik mevcut değil",
+    "cancel": "İptal",
+    "update_time": "Güncelleme Zamanı",
+    "update_date": "Güncelleme Tarihi"
+  },
+  "home": {
+    "empty": "Bu kategoride gösterilecek içerik yapılandırılmamış."
+  },
+  "feedback": {
+    "suffix": "Geri bildirim",
+    "action": "Geri Bildirim Gönder",
+    "record": "Geri Bildirim Kaydı",
+    "submit": "Geri Bildirim Gönder",
+    "title": "Müşteri Hizmetleriyle İletişim",
+    "submit_ticket": "Bilet Gönder",
+    "wait_time": "Tahmini Bekleme Süresi:",
+    "hours": "{{value}} saat",
+    "minutes": "{{value}} dakika"
+  },
+  "faqs": {
+    "showAll": "Tümünü Gör",
+    "similar": "Benzer Sorunlar"
+  },
+  "notice": {
+    "title": "Duyuru",
+    "hint": "Eğer yukarıdaki içerik size yardımcı olamadıysa"
+  },
+  "auth": {
+    "not_logged_in_text": "Hesabınıza giriş yapmadığınız tespit edildi, lütfen giriş yaparak tekrar deneyin."
+  },
+  "category": {
+    "select_hint": "Konu Seçin",
+    "select_hint_home": "Soru Türü Seçimi",
+    "faqs": "İlgili makaleler",
+    "title": "Soru Kategorisi"
+  },
+  "topic": {
+    "title": "Sıkça Sorulan Sorular",
+    "hint": "Eğer yukarıdaki içerik size yardımcı olamadıysa, şunu yapabilirsiniz:"
+  },
+  "ticket": {
+    "record": "Soru Kaydı",
+    "no_record": "sorun kaydı bulunmamaktadır",
+    "no_more_record": "Hiçbir kayıt kalmadı",
+    "create": {
+      "success": "Gönderim başarılı",
+      "success_text": "$t(ticket.create.success), en kısa sürede sizin için işleme alacağız."
+    },
+    "detail": "Soru Detayları",
+    "resolved": "İşlem Tamamlandı",
+    "unResolved": "İşlem yapılıyor",
+    "contact": "Müşteri Hizmetleri ile İletişime Geçin"
+  },
+  "reply": {
+    "staff_title": "Resmi Müşteri Hizmetleri",
+    "my_title": "Siz",
+    "input_content_hint": "Lütfen içeriği girin"
+  },
+  "status": {
+    "new": "Beklemede",
+    "waiting_on_staff": "Beklenen müşteri hizmetleri yanıtı",
+    "waiting_on_customer": "Kullanıcının yanıtını bekleyin",
+    "resolved": "Çözüldü"
+  },
+  "evaluation": {
+    "title": "Hizmet Değerlendirmesi ve Geri Bildirim",
+    "useful": "Kullanışlı",
+    "useless": "İşe yaramaz",
+    "content_hint": "Ek açıklama (doldurulması zorunlu değil)",
+    "created_text": "Geri bildiriminiz alındı, geri bildiriminiz için teşekkür ederiz!",
+    "change": "Değerlendirmeyi Değiştir"
+  },
+  "validation": {
+    "required": "Bu içerik boş olamaz",
+    "attachment_too_big": "Yükleme başarısız oldu",
+    "attachment_too_big_text": "Ek dosya boyutu {{size}} {{unit}}'i geçemez",
+    "attachment_not_uploaded": "Lütfen ek dosyanın yüklenmesini bekleyin",
+    "number_required": "Sadece sayısal karakter içermelidir",
+    "invalid": "Giriş geçersiz"
+  },
+  "network_error": "Ağ hatası, lütfen tekrar bağlanmayı deneyin",
+  "network_error.retry": "Yeniden bağlan"
+}

@@ -1,0 +1,104 @@
+{
+  "schema": {
+    "objectId": {
+      "type": "String"
+    },
+    "ACL": {
+      "type": "ACL"
+    },
+    "updatedAt": {
+      "type": "Date"
+    },
+    "createdAt": {
+      "type": "Date"
+    },
+    "date": {
+      "type": "Date"
+    },
+    "notProcessed": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "waitingCustomer": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "waitingCustomerService": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "preFulfilled": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "fulfilled": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "closed": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "hidden": false,
+      "read_only": false
+    }
+  },
+  "permissions": {
+    "create": {
+      "roles": [],
+      "users": []
+    },
+    "find": {
+      "roles": [],
+      "users": []
+    },
+    "get": {
+      "roles": [],
+      "users": []
+    },
+    "update": {
+      "roles": [],
+      "users": []
+    },
+    "delete": {
+      "roles": [],
+      "users": []
+    },
+    "add_fields": {
+      "roles": [],
+      "users": []
+    }
+  },
+  "indexes": [
+    {
+      "v": 2,
+      "unique": true,
+      "background": true,
+      "name": "-user-date_1",
+      "key": {
+        "date": 1
+      }
+    }
+  ]
+}

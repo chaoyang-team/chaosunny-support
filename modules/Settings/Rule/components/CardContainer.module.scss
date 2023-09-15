@@ -1,0 +1,12 @@
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 200ms;
+
+  &:hover {
+    color: #000;
+  }
+}

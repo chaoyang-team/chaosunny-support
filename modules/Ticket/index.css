@@ -1,0 +1,201 @@
+.meta {
+  color: #999;
+}
+
+.customMetadata {
+  font-size: 13px;
+  color: grey;
+  margin-top: 4px;
+  overflow-wrap: break-word;
+}
+.customMetadata .key {
+  font-weight: 600;
+}
+
+.staff {
+  border-color: #c1d5e4;
+}
+
+.staff .heading {
+  background: #e3edf7;
+  border-color: #c1d5e4;
+}
+
+.internal {
+  border-color: #ff9800bf;
+}
+
+.internal .heading {
+  background: #ffc10733;
+  border-color: #ff9800bf;
+}
+
+.content {
+  /*
+    some user generated content contains unformatted code snippets, i have to
+    foruce word break for all these content
+
+    demo: http://localhost:3000/tickets/13164
+  */
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.content img {
+  max-width: 100%;
+}
+
+.content > div > *:last-child {
+  margin-bottom: 0;
+}
+
+.content .cover {
+  background-image: linear-gradient(transparent 50%, #fff);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content .cover .expand {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+}
+
+.sidebar {
+  position: sticky;
+  top: 70px;
+}
+
+.badge {
+  font-style: normal;
+  font-size: 12px;
+  border: 1px solid;
+  padding: 4px 6px;
+  border-radius: 4px;
+  line-height: 1;
+  background-color: transparent;
+}
+
+.staff .badge {
+  color: #779bbf;
+}
+
+.internal .badge {
+  color: #ff9800bf;
+}
+
+.replyMenuIcon {
+  color: #586069;
+  cursor: pointer;
+}
+
+/* reset categroy inherited from CustomerServiceTickets */
+.category {
+  vertical-align: inherit;
+  margin-left: 0;
+}
+
+.submit {
+  min-width: 74px;
+}
+
+.markdownTip {
+  margin-top: 6px;
+  color: #999;
+}
+
+.markdownTip a {
+  color: #999;
+}
+
+.markdownTip a:hover {
+  color: #3090e4;
+}
+
+.metaAlert {
+  font-size: 90%;
+}
+
+.field{
+  font-size: 90%;
+  margin-bottom: .25rem;
+}
+.field >label{
+  font-weight: bold;
+}
+
+
+.form :global(.form-group:last-child){
+  margin-bottom: 0;
+}
+
+.recentTitle {
+  margin-bottom: 12px;
+}
+.recentTitle .allTickets {
+  font-size: 90%;
+}
+.recentList {
+  list-style-type :none;
+  padding-left: 0;
+}
+.recentList li {
+  display: flex;
+  gap: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  align-items: center;
+}
+.recentList li + li {
+  margin-top: 12px;
+}
+.recentList li > span {
+  flex-shrink: 0;
+}
+.recentList li > span:nth-last-child(3) {
+  flex-grow: 1;
+}
+.recentList .link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+.recentList .timestamp {
+  color: #777;
+}
+.nid {
+  color: #afafaf;
+  margin-right: .5em;
+}
+
+@media (max-width: 500px) {
+  .recentList li > span:nth-last-child(2) {
+    display: none;
+  }
+  .recentList li > span:nth-last-child(3) {
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 400px) {
+  .recentList li > span:nth-last-child(1) {
+    display: none;
+  }
+  .recentList li > span:nth-last-child(3) {
+    flex-grow: unset;
+  }
+  .recentList li > a {
+    flex-grow: 1;
+  }
+}

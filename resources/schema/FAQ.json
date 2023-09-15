@@ -1,0 +1,88 @@
+{
+  "schema": {
+    "updatedAt": {
+      "type": "Date"
+    },
+    "revision": {
+      "type": "Pointer",
+      "v": 2,
+      "className": "FAQRevision",
+      "required": false,
+      "hidden": false,
+      "read_only": false,
+      "comment": "最近一次有内容的修改记录"
+    },
+    "ACL": {
+      "type": "ACL",
+      "default": {
+        "*": {
+          "read": true,
+          "write": true
+        }
+      }
+    },
+    "publishedFrom": {
+      "type": "Date",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "publishedTo": {
+      "type": "Date",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "name": {
+      "type": "String",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "createdAt": {
+      "type": "Date"
+    },
+    "deletedAt": {
+      "type": "Date",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "defaultLanguage": {
+      "type": "String",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false,
+      "comment": ""
+    }
+  },
+  "permissions": {
+    "create": {
+      "*": true
+    },
+    "find": {
+      "*": true
+    },
+    "get": {
+      "*": true
+    },
+    "update": {
+      "*": true
+    },
+    "delete": {
+      "*": true
+    },
+    "add_fields": {
+      "*": true
+    }
+  },
+  "indexes": []
+}

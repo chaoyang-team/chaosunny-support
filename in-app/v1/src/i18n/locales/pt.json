@@ -1,0 +1,101 @@
+{
+  "general": {
+    "commit": "Enviar",
+    "loading": "Carregando",
+    "select_hint": "Por favor, escolha",
+    "collapse": "Colapso",
+    "expand": "Expanda",
+    "number": "Número de Referência",
+    "status": "Estado",
+    "title": "Título",
+    "description": "Descrição",
+    "attachment": "Anexo",
+    "send": "Enviar",
+    "confirm": "Confirmar",
+    "no_data": "Sem dados disponíveis",
+    "call_center": "Centro de Atendimento ao Cliente",
+    "click_to_upload": "Clique para fazer upload",
+    "content_deleted": "O conteúdo foi excluído",
+    "not_found": "O conteúdo não existe",
+    "cancel": "Cancelar",
+    "update_time": "Tempo de atualização",
+    "update_date": "Data de atualização"
+  },
+  "home": {
+    "empty": "Nenhum conteúdo de exibição configurado na categoria atual"
+  },
+  "feedback": {
+    "suffix": "Feedback",
+    "action": "Enviar Feedback",
+    "record": "Registo de feedback",
+    "submit": "Enviar feedback",
+    "title": "Contato com o Atendimento ao Cliente",
+    "submit_ticket": "Enviar Ticket",
+    "wait_time": "Tempo de Espera Estimado:",
+    "hours": "{{value}} horas",
+    "minutes": "{{value}} minutos"
+  },
+  "faqs": {
+    "showAll": "Visualizar tudo",
+    "similar": "Questões semelhantes"
+  },
+  "notice": {
+    "title": "Aviso",
+    "hint": "Se o conteúdo acima não te ajudou"
+  },
+  "auth": {
+    "not_logged_in_text": "Detetamos que você não está logado na sua conta. Por favor, faça login e tente novamente."
+  },
+  "category": {
+    "select_hint": "Selecionar Tópico",
+    "select_hint_home": "Selecione o tipo de problema",
+    "faqs": "Artigos relacionados",
+    "title": "Classificação de Problemas"
+  },
+  "topic": {
+    "title": "Perguntas Frequentes",
+    "hint": "Se o conteúdo acima não te ajudou, você pode"
+  },
+  "ticket": {
+    "record": "Registro de problemas",
+    "no_record": "Sem registros de problemas",
+    "no_more_record": "Sem mais registros",
+    "create": {
+      "success": "Submissão bem-sucedida",
+      "success_text": "$t(ticket.create.success), iremos tratar o seu pedido o mais breve possível"
+    },
+    "detail": "Detalhes do problema",
+    "resolved": "Processado",
+    "unResolved": "Em processamento",
+    "contact": "Entre em contato com o suporte ao cliente"
+  },
+  "reply": {
+    "staff_title": "Suporte oficial",
+    "my_title": "Você",
+    "input_content_hint": "Por favor, insira o conteúdo"
+  },
+  "status": {
+    "new": "Aguardando processamento",
+    "waiting_on_staff": "Aguardando resposta do suporte",
+    "waiting_on_customer": "Aguardando resposta do usuário",
+    "resolved": "Resolvido"
+  },
+  "evaluation": {
+    "title": "Avaliação de serviço e feedback",
+    "useful": "Útil",
+    "useless": "Sem utilidade",
+    "content_hint": "Adendo (opcional)",
+    "created_text": "O seu feedback foi recebido, obrigado pela sua contribuição!",
+    "change": "Alterar Avaliação"
+  },
+  "validation": {
+    "required": "O conteúdo não pode estar vazio",
+    "attachment_too_big": "Falha no envio",
+    "attachment_too_big_text": "O tamanho do anexo não pode exceder {{size}} {{unit}}",
+    "attachment_not_uploaded": "Por favor, aguarde o envio do anexo ser concluído",
+    "number_required": "Não pode conter caracteres não numéricos",
+    "invalid": "Entrada inválida"
+  },
+  "network_error": "Conexão instável, por favor tente reconectar",
+  "network_error.retry": "Reconectar"
+}

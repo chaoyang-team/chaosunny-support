@@ -1,0 +1,104 @@
+{
+  "schema": {
+    "updatedAt": {
+      "type": "Date"
+    },
+    "ACL": {
+      "type": "ACL"
+    },
+    "objectId": {
+      "type": "String"
+    },
+    "defaultLocale": {
+      "type": "String",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false
+    },
+    "createdAt": {
+      "type": "Date"
+    },
+    "type": {
+      "type": "String",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false
+    },
+    "title": {
+      "type": "String",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false,
+      "comment": ""
+    },
+    "previewTemplate": {
+      "type": "String"
+    },
+    "meta": {
+      "type": "Object",
+      "v": 2,
+      "read_only": false,
+      "comment": ""
+    },
+    "pattern": {
+      "type": "String",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "active": {
+      "type": "Boolean",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false,
+      "comment": ""
+    },
+    "visible": {
+      "type": "Boolean",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "required": {
+      "type": "Boolean",
+      "v": 2,
+      "required": true,
+      "hidden": false,
+      "read_only": false,
+      "comment": ""
+    }
+  },
+  "permissions": {
+    "create": {
+      "roles": [],
+      "users": []
+    },
+    "find": {
+      "roles": [],
+      "users": []
+    },
+    "get": {
+      "roles": [],
+      "users": []
+    },
+    "update": {
+      "roles": [],
+      "users": []
+    },
+    "delete": {
+      "roles": [],
+      "users": []
+    },
+    "add_fields": {
+      "roles": [],
+      "users": []
+    }
+  },
+  "indexes": []
+}

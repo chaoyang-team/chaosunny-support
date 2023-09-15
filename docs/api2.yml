@@ -1,0 +1,1613 @@
+openapi: '3.0.0'
+info:
+  title: TapSupport REST API
+  version: '2.0'
+servers:
+  - url: /
+    description: 当前环境
+  - url: http://127.0.0.1:4000
+    description: 开发环境
+components:
+  parameters:
+    dateFrom:
+      name: from
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date-time
+    dateTo:
+      name: to
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date-time
+    category:
+      name: category
+      in: query
+      schema:
+        type: string
+      description: Category ID
+    customerService:
+      name: customerService
+      in: query
+      schema:
+        type: string
+      description: 客服 ID
+    group:
+      name: group
+      in: query
+      schema:
+        type: string
+      description: 客服组 ID
+  securitySchemes:
+    Session token:
+      type: apiKey
+      in: header
+      name: x-lc-session
+  schemas:
+    Tag:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required: [key, value]
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        nickname:
+          type: string
+        avatarUrl:
+          type: string
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        parentId:
+          type: string
+          description: 父分类 ID，可以通过该属性构建一颗树
+        position:
+          type: number
+          description: 同一个父分类下的序号
+        active:
+          type: boolean
+        template:
+          type: string
+          deprecated: true
+          description: 问题模板（已被表单替代）
+    TicketField:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - text
+            - multi-line
+            - dropdown
+            - multi-select
+            - radios
+            - file
+        title:
+          type: string
+          description: 字段名称
+        description:
+          type: string
+          description: 字段补充解释
+        required:
+          type: boolean
+          description: 是否必填
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        mime:
+          type: string
+        url:
+          type: string
+        thumbnailUrl:
+          type: string
+    Evaluation:
+      type: object
+      properties:
+        star:
+          type: integer
+          enum: [0, 1]
+        content:
+          type: string
+        selections:
+          type: array
+          description: 评价的选项
+          items:
+            type: string
+      required: [star]
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 5ff4324896ba311a0a411392
+        nid:
+          type: integer
+          description: 自增 ID
+          example: 21430
+        title:
+          type: string
+        categoryId:
+          type: string
+        categoryPath:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        authorId:
+          type: string
+        author:
+          $ref: '#/components/schemas/User'
+        assigneeId:
+          type: string
+        assignee:
+          $ref: '#/components/schemas/User'
+        groupId:
+          type: string
+        group:
+          $ref: '#/components/schemas/Group'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+        status:
+          $ref: '#/components/schemas/Status'
+        evaluation:
+          $ref: '#/components/schemas/Evaluation'
+        replyCount:
+          type: integer
+        firstCustomerServiceReplyAt:
+          type: string
+          format: date-time
+        latestCustomerServiceReplyAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+          deprecated: true
+        contentSafeHTML:
+          type: string
+          description: 详细描述（安全的 HTML，已 XSS 过滤）（仅在非列表中出现)
+        unreadCount:
+          type: integer
+          description: 当前用户未读数（仅在列表中出现）
+    Status:
+      type: integer
+      enum: [50, 120, 160, 220, 250, 280]
+    Reply:
+      type: object
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+        contentSafeHTML:
+          type: string
+          description: 安全的 HTML，已 XSS 过滤
+        author:
+          $ref: '#/components/schemas/User'
+        isCustomerService:
+          type: boolean
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    OpsLog:
+      type: object
+      properties:
+        id:
+          type: string
+        action:
+          type: string
+          enum:
+            [
+              'replyWithNoContent',
+              'replySoon',
+              'resolve',
+              'close',
+              'reopen',
+              'selectAssignee',
+              'changeAssignee',
+              'changeGroup',
+              'changeCategory',
+              'changeFields',
+            ]
+          description: |
+            |action|描述|附加字段|internal|
+            |----|----|----|----|
+            |replyWithNoContent|客服认为无需回复（并将状态改为等待用户回复）|
+            |replySoon|客服认为需要一些时间处理，会稍后回复|
+            |resolve|客服认为或用户确认工单已解决|
+            |close|工单被关闭|
+            |reopen|工单被重新打开|
+            |changeGroup|系统或某客服修改了工单客服组|groupId|✔️
+            |selectAssignee|系统将工单分配给了某客服|assigneeId
+            |changeAssignee|系统或某客服将工单交给了某客服|assigneeId
+            |changeCategory|系统或某客服修改了工单分类|categoryId
+            |changeFields|用户或客服修改了工单字段|changes
+        operatorId:
+          type: string
+          description: 操作者 ID。ID 为 `system` 代表该操作由系统自动触发。
+
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+        ticket:
+          $ref: '#/components/schemas/Ticket'
+        unreadCount:
+          type: number
+        latestAction:
+          type: string
+          enum: ['newTicket', 'reply', 'changeAssignee', 'ticketEvaluation', 'changeStatus']
+        latestActionAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Article:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        contentSafeHTML:
+          type: string
+        private:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Topic:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        meta:
+          type: object
+        articleIds:
+          type: array
+          items:
+            type: string
+        articles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Article'
+          description: 仅在部分参数下返回值包含该字段
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Revision:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+        meta:
+          type: boolean
+        private:
+          type: boolean
+        author:
+          $ref: '#/components/schemas/User'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+security:
+  - Session token: []
+paths:
+  /api/2/users:
+    post:
+      tags: [User]
+      summary: 登录
+      description: request body 中提供的不同字段对应不同的登录方式，详细用法参见使用文档。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jwt:
+                  type: string
+                anonymousId:
+                  type: string
+                name:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionToken:
+                    type: string
+  /api/2/users/pre-create:
+    post:
+      tags: [User]
+      summary: 预注册
+      description: 通过 email 或用户名预注册用户。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/2/users/tds/token:
+    post:
+      tags: [User]
+      summary: 交换 Token
+      description: 将 storage 签发的 jwt 换成客服系统签发的长期 jwt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jwt:
+                  type: string
+                  description: storage 签发的 jwt
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jwt:
+                    type: string
+                    description: 客服系统签发的 jwt
+
+  /api/2/products/{pid}/categories:
+    parameters:
+      - name: pid
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Category']
+      summary: 获取分类列表
+      parameters:
+        - name: active
+          in: query
+          schema:
+            type: boolean
+          description: 是否只返回已启用的分类
+          example: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+
+  /api/2/categories/{cid}/fields:
+    parameters:
+      - name: cid
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Category']
+      summary: 获取某个分类关联的表单描述 (已被 /ticket-forms/{id}/items 代替)
+      deprecated: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketField'
+  /api/2/categories/{cid}/faqs:
+    parameters:
+      - name: cid
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Category', 'Knowladge base']
+      summary: 获取与某个分类关联的相关文章
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+  /api/2/products/{cid}/topics:
+    parameters:
+      - name: cid
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Category', 'Knowladge base']
+      summary: 获取与某个分类关联的 Topics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+
+  /api/2/tickets:
+    get:
+      tags: [Ticket]
+      summary: 查询工单
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: 页数，范围：[1, Infinity)
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+          description: 每页数量，范围：[0, 100]，默认为 10
+        - name: count
+          in: query
+          schema:
+            type: boolean
+          description: 为 `true` 时通过 x-total-count 返回符合条件的工单数量
+        - name: authorId
+          in: query
+          schema:
+            type: string
+          description: 工单创建者 ID
+        - name: assigneeId
+          in: query
+          schema:
+            type: string
+          description: 工单负责人 ID，多个值可用 `,` 分隔。`null` 表示未分配负责人
+        - name: groupId
+          in: query
+          schema:
+            type: string
+          description: 客服组 ID，多个值可用 `,` 分隔。`null` 表示未分配客服组
+        - name: categoryId
+          in: query
+          schema:
+            type: string
+          description: 分类 ID，多个值可用 `,` 分隔
+        - name: product
+          in: query
+          schema:
+            type: string
+          description: 根分类 ID，等同于将 categoryId 设置为 product + 其下所有子分类的 ID
+        - name: status
+          in: query
+          schema:
+            $ref: '#/components/schemas/Status'
+        - name: evaluation.star
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+          description: 评价星级
+        - name: createdAt
+          in: query
+          schema:
+            type: string
+          description: |
+            创建时间的范围，格式为：`{starts}..{ends}`，缺省值用 `*` 表示：
+
+            `2021-09-01T00:00:00.000..*`
+
+            `*..2021-09-30T23:59:59.999`
+
+            `2021-09-01T00:00:00.000..2021-09-30T23:59:59.999`
+        - name: orderBy
+          in: query
+          schema:
+            type: string
+            enum:
+              - createdAt
+              - createdAt-desc
+              - updatedAt
+              - updatedAt-desc
+              - latestCustomerServiceReplyAt
+              - latestCustomerServiceReplyAt-desc
+              - status
+              - status-desc
+          description: 排序字段，默认为升序，`-desc` 后缀表示降序
+        - name: include
+          in: query
+          schema:
+            type: string
+          description: |
+            将指定字段包含进查询结果中。可选值：
+            - author
+            - assignee
+            - category
+            - categoryPath
+            - group（仅客服可用）
+            - files
+            - unreadCount
+
+            多个值可用 `,` 分隔
+        - name: includeMetaKeys
+          in: query
+          schema:
+            type: string
+          description: 将指定 metaData 字段包含进查询结果中，多个值可用 `,` 分隔。
+        - name: where
+          in: query
+          schema:
+            type: string
+          description: （谨慎使用）底层查询条件，格式为 JSON 字符串。详见 [LeanCloud REST API 文档](https://leancloud.cn/docs/rest_api.html)
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-total-count:
+              schema:
+                type: string
+                format: integer
+              description: 符合条件的工单数量（仅当指定 count 参数时返回）
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+    post:
+      tags: [Ticket]
+      summary: 创建工单
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: string
+                title:
+                  type: string
+                  description: 标题，最大长度 100 字符（已被表单系统字段代替）
+                  deprecated: true
+                content:
+                  type: string
+                  description: 内容，支持 Markdown（已被表单系统字段代替）
+                  deprecated: true
+                fileIds:
+                  type: array
+                  items:
+                    type: string
+                  description: 附件文件 ID 列表（已被表单系统字段代替）
+                  deprecated: true
+                customFields:
+                  type: array
+                  description: 工单字段
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        type: string
+                        description: 工单字段 ID
+                      value:
+                        type: mixed
+                        description: 工单字段值
+              required: [title, categoryId]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+
+  /api/2/ticket/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: 工单 ID
+        schema:
+          type: string
+        required: true
+    get:
+      tags: [Ticket]
+      summary: 获取工单详情
+      parameters:
+        - name: includeAuthor
+          in: query
+          schema:
+            type: boolean
+        - name: includeAssignee
+          in: query
+          schema:
+            type: boolean
+        - name: includeCategory
+          in: query
+          schema:
+            type: boolean
+        - name: includeGroup
+          in: query
+          schema:
+            type: boolean
+        - name: includeFiles
+          in: query
+          schema:
+            type: boolean
+        - name: includeCategoryPath
+          in: query
+          schema:
+            type: boolean
+        - name: includeUnreadCount
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+    patch:
+      tags: [Ticket]
+      summary: 更新工单信息
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assigneeId:
+                  type: string
+                  nullable: true
+                groupId:
+                  type: string
+                  nullable: true
+                categoryId:
+                  type: string
+                organizationId:
+                  type: string
+                  nullable: true
+                tags:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Tag'
+                privateTags:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Tag'
+                evaluation:
+                  $ref: '#/components/schemas/Evaluation'
+      responses:
+        '200':
+          description: OK
+
+  /api/2/tickets/{id}/replies:
+    parameters:
+      - name: id
+        in: path
+        description: 工单 ID
+        schema:
+          type: string
+        required: true
+    get:
+      tags: [Ticket]
+      summary: 获取回复
+      parameters:
+        - name: orderBy
+          in: query
+          schema:
+            type: string
+            enum:
+              - createdAt
+              - createdAt-desc
+          description: 排序字段，默认为升序，`-desc` 后缀表示降序
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+          description: 每页数量，范围：[1, 1000]，默认为 100
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: 页数，范围：[1, Infinity)
+        - name: cursor
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: 以返回结果的 createdAt 作为游标加载更多。如果指定 cursor，page 参数将被忽略。
+        - name: count
+          in: query
+          schema:
+            type: boolean
+          description: 为 `true` 时通过 x-total-count 返回符合条件的回复数量。
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-total-count:
+              schema:
+                type: string
+                format: integer
+              description: 符合条件的回复数量（仅当指定 count 参数时返回）
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reply'
+    post:
+      tags: [Ticket]
+      summary: 创建回复
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                fileIds:
+                  type: array
+                  items:
+                    type: string
+                internal:
+                  type: boolean
+                  description: 创建为内部回复（仅客服可见，该参数仅客服有效）
+              required: [content]
+            examples:
+              创建普通回复:
+                value:
+                  content: '你们给我搞的这个客服系统啊——Excited!'
+              创建带附件的回复:
+                value:
+                  content: '如图所示'
+                  fileIds: ['uploaded-file-id']
+              创建仅客服可见的回复:
+                value:
+                  content: '这个用户老是提一些莫名其妙的问题 😑'
+                  internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  content:
+                    type: string
+                  contentSafeHTML:
+                    type: string
+                  author:
+                    $ref: '#/components/schemas/User'
+                  isCustomerService:
+                    type: boolean
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/File'
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+
+  /api/2/tickets/{id}/ops-logs:
+    parameters:
+      - name: id
+        in: path
+        description: 工单 ID
+        schema:
+          type: string
+        required: true
+    get:
+      tags: [Ticket]
+      summary: 获取操作日志
+      parameters:
+        - name: orderBy
+          in: query
+          schema:
+            type: string
+            enum:
+              - createdAt
+              - createdAt-desc
+          description: 排序字段，默认为升序，`-desc` 后缀表示降序
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+          description: 每页数量，范围：[1, 1000]，默认为 100
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: 页数，范围：[1, Infinity)
+        - name: cursor
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: 以返回结果的 createdAt 作为游标加载更多。如果指定 cursor，page 参数将被忽略。
+        - name: count
+          in: query
+          schema:
+            type: boolean
+          description: 为 `true` 时通过 x-total-count 返回符合条件的日志数量。
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-total-count:
+              schema:
+                type: string
+                format: integer
+              description: 符合条件的日志数量（仅当指定 count 参数时返回）
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OpsLog'
+
+  /api/2/ticket-stats:
+    get:
+      tags: [TicketStats]
+      summary: 获取基本的统计信息
+      description: 包含工单数量、回复时间等
+      parameters:
+        - $ref: '#/components/parameters/dateTo'
+        - $ref: '#/components/parameters/dateFrom'
+        - $ref: '#/components/parameters/category'
+        - $ref: '#/components/parameters/customerService'
+        - $ref: '#/components/parameters/group'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created:
+                    type: integer
+                    description: 新建工单数量
+                  closed:
+                    type: integer
+                    description: 关闭工单数量
+                  reopened:
+                    type: integer
+                    description: 激活工单数量
+                  conversion:
+                    type: integer
+                    description: 流转数
+                  internalConversion:
+                    type: integer
+                  externalConversion:
+                    type: integer
+                  replyTime:
+                    type: integer
+                  replyTimeCount:
+                    type: integer
+                  replyCount:
+                    type: integer
+                  firstReplyTime:
+                    type: integer
+                  firstReplyCount:
+                    type: integer
+                  weekdayReplyTime:
+                    type: integer
+                  weekdayReplyTimeCount:
+                    type: integer
+                  weekdayReplyCount:
+                    type: integer
+                  internalReplyCount:
+                    type: integer
+                  naturalReplyTime:
+                    type: integer
+                  naturalReplyCount:
+                    type: integer
+                  likeCount:
+                    type: integer
+                  dislikeCount:
+                    type: integer
+                  likeRate:
+                    type: number
+                  dislikeRate:
+                    type: number
+                required: [likeCount, dislikeCount, likeRate, dislikeRate]
+
+  /api/2/ticket-stats/fields:
+    get:
+      tags: [TicketStats]
+      summary: 获取某个 field 的详细统计
+      parameters:
+        - $ref: '#/components/parameters/dateTo'
+        - $ref: '#/components/parameters/dateFrom'
+        - $ref: '#/components/parameters/category'
+        - $ref: '#/components/parameters/customerService'
+        - $ref: '#/components/parameters/group'
+        - name: fields
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: bySelection
+          in: query
+          description: |
+            控制评价统计是否以 selection 来分
+            只对 likeCount 和 dislikeCount 的 field 有效
+            为 false 时返回体里不会出现 selection 字段
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        likeCount:
+                          type: integer
+                        dislikeCount:
+                          type: integer
+                        categoryId:
+                          type: string
+                        customerServiceId:
+                          type: string
+                        selection:
+                          type: string
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        created:
+                          type: integer
+                        closed:
+                          type: integer
+                        reopened:
+                          type: integer
+                        conversion:
+                          type: integer
+                        firstReplyTime:
+                          type: integer
+                        firstReplyCount:
+                          type: integer
+                        replyTime:
+                          type: integer
+                        replyTimeCount:
+                          type: integer
+                        naturalReplyTime:
+                          type: integer
+                        naturalReplyCount:
+                          type: integer
+                        replyCount:
+                          type: integer
+                        internalReplyCount:
+                          type: integer
+                        categoryId:
+                          type: string
+                        customerServiceId:
+                          type: string
+
+  /api/2/ticket-stats/status:
+    get:
+      tags: [TicketStats]
+      parameters:
+        - $ref: '#/components/parameters/dateTo'
+        - $ref: '#/components/parameters/dateFrom'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    date:
+                      type: string
+                      format: date-time
+                    notProcessed:
+                      type: integer
+                    waitingCustomer:
+                      type: integer
+                    waitingCustomerService:
+                      type: integer
+                    preFulfilled:
+                      type: integer
+                    fulfilled:
+                      type: integer
+                    closed:
+                      type: integer
+
+  /api/2/ticket-stats/details:
+    get:
+      tags: [TicketStats]
+      parameters:
+        - $ref: '#/components/parameters/dateTo'
+        - $ref: '#/components/parameters/dateFrom'
+        - $ref: '#/components/parameters/category'
+        - $ref: '#/components/parameters/customerService'
+        - $ref: '#/components/parameters/group'
+        - name: field
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nid:
+                      type: integer
+                    replyTime:
+                      type: integer
+
+  /api/2/ticket-stats/count:
+    get:
+      tags: [TicketStats]
+      parameters:
+        - $ref: '#/components/parameters/dateTo'
+        - $ref: '#/components/parameters/dateFrom'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+
+  /api/2/ticket-stats/realtime:
+    get:
+      tags: [TicketStats]
+      description: 待补全
+      responses:
+        '200':
+          description: OK
+
+  /api/2/unread:
+    get:
+      tags: ['Notification']
+      summary: 获取当前用户是否有未读的通知
+      description: 通常用于判断是否要显示小红点
+      responses:
+        '200':
+          description: 返回 true / false
+          content:
+            application/json:
+              schema:
+                type: boolean
+      parameters:
+        - name: product
+          in: query
+          schema:
+            type: string
+          description: 只返回属于指定 product 下的分类的工单的未读情况
+  /api/2/notifications:
+    get:
+      tags: ['Notification']
+      summary: 获取当前用户工单更新通知
+      parameters:
+        - name: product
+          in: query
+          schema:
+            type: string
+          description: 只返回属于指定 product 下的分类的工单更新通知
+        - name: unread
+          in: query
+          schema:
+            type: string
+          description: 如该参数出现（值可以任意指定），则仅返回未读的通知
+        - name: before
+          in: query
+          schema:
+            type: string
+            description: ISO 时间戳，配合返回值中的 latestActionAt 翻页
+        - name: limit
+          in: query
+          schema:
+            type: number
+            description: 每页条数，默认 25，最大 999
+        - name: includeTicketMetaKeys
+          in: query
+          schema:
+            type: string
+            description: 在返回结果的 ticket 包含的 metaData 字段列表，多个值用 `,` 分隔
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+  /api/2/notifications/read-all:
+    post:
+      tags: ['Notification']
+      summary: 批量将所有未读通知标为已读
+      parameters:
+        - name: product
+          in: query
+          schema:
+            type: string
+          description: 只标记指定 product 下的分类的工单已读
+      responses:
+        '200':
+          description: Done
+
+  /api/2/articles:
+    get:
+      tags: ['Knowladge base']
+      summary: 查询文章
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: 页数，范围：[1, Infinity)
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+          description: 每页数量，范围：[0, 100]，默认为 20
+        - name: private
+          in: query
+          schema:
+            type: boolean
+          description: 指定仅返回 private / public 的文章，仅对客服账号生效（用户仅能看到 public 的文章）
+        - name: count
+          in: query
+          schema:
+            type: boolean
+          description: 为 `true` 时通过 x-total-count 返回符合条件的文章数量
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+    post:
+      tags: ['Knowladge base']
+      summary: 创建文章
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                private:
+                  type: boolean
+              required: [title, content]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+
+  /api/2/articles/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Knowladge base']
+      summary: 获取文章
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+    patch:
+      tags: ['Knowladge base']
+      summary: 更新文章
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                private:
+                  type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags: ['Knowladge base']
+      summary: 删除文章
+      description: 已上线（public）的文章不可删除，使用中（有关联的分类）的文章不可删除。
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/2/articles/{id}/categories:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Knowladge base']
+      summary: 获取关联了该文章为相关文章或公告的分类
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+
+  /api/2/articles/{id}/feedback:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    post:
+      tags: ['Knowladge base']
+      summary: 提交文章反馈
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: integer
+                  enum: [-1, 1]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/2/articles/{id}/revisions:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: page
+        in: query
+        schema:
+          type: integer
+        description: 页数，范围：[1, Infinity)
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        description: 每页数量，范围：[0, 100]，默认为 20
+      - name: meta
+        in: query
+        schema:
+          type: boolean
+        description: 为真时仅返回发布、撤销发布记录，为假时仅返回内容修改记录
+      - name: count
+        in: query
+        schema:
+          type: boolean
+        description: 为 `true` 时通过 x-total-count 返回符合条件的记录数量
+    get:
+      tags: ['Knowladge base']
+      summary: 获取文章修改记录
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Revision'
+
+  /api/2/products/{pid}/notices:
+    parameters:
+      - name: pid
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Knowladge base']
+      summary: 获取公告
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+
+  /api/2/topics:
+    get:
+      tags: ['Knowladge base']
+      summary: 查询 Topic
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: 页数，范围：[1, Infinity)
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+          description: 每页数量，范围：[0, 100]，默认为 10
+        - name: count
+          in: query
+          schema:
+            type: boolean
+          description: 为 `true` 时通过 x-total-count 返回符合条件的 topic 数量
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    post:
+      tags: ['Knowladge base']
+      summary: 创建 Topic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                articleIds:
+                  type: array
+                  items:
+                    type: string
+                meta:
+                  type: object
+              required: [name, articleIds]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+
+  /api/2/topics/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags: ['Knowladge base']
+      summary: 获取 Topic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+    patch:
+      tags: ['Knowladge base']
+      summary: 更新 Topic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                articleIds:
+                  type: array
+                  items:
+                    type: string
+                meta:
+                  type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags: ['Knowladge base']
+      summary: 删除 Topic
+      description: 使用中（有关联的分类）的文章不可删除。
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/2/external-files:
+    post:
+      tags: [File]
+      summary: 注册外部文件
+      description: 支持提交文件的接口使用文件 ID 作为参数，外部文件需要先通过此接口注册以获取文件 ID。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    required: true
+                  name:
+                    type: string
+                    description: 用户文件展示时的名字。如不指定则使用 URL 中的最后一级路径。
+                  type:
+                    type: string
+                    description: MIME type
+                  metaData:
+                    type: object
+                    description: KV 接口的的元数据，可用于筛选。
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  description: 文件 ID

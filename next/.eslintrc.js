@@ -1,0 +1,68 @@
+module.exports = {
+  root: true,
+
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+    mocha: true,
+  },
+
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:promise/recommended',
+    'prettier',
+  ],
+  parserOptions: {
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+    },
+    ecmaVersion: 2021,
+    sourceType: 'module',
+  },
+
+  plugins: ['promise', 'i18n', '@typescript-eslint'],
+
+  rules: {
+    'linebreak-style': ['error', 'unix'],
+    'no-console': 0,
+    'no-control-regex': 'off',
+    'no-fallthrough': 'off',
+    'no-unused-vars': 'off',
+    'no-empty': ['error', { allowEmptyCatch: true }],
+    'no-case-declarations': 'off',
+    'prefer-const': 'off',
+    'prefer-spread': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'promise/no-nesting': 0,
+    'promise/no-callback-in-promise': 0,
+    'promise/always-return': 'off',
+    'promise/catch-or-return': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
+    '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      { checksVoidReturn: false, checksConditionals: false },
+    ],
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+    '@typescript-eslint/restrict-plus-operands': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/prefer-as-const': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+  },
+};

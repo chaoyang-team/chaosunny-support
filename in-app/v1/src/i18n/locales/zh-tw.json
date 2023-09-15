@@ -1,0 +1,114 @@
+{
+  "general": {
+    "commit": "提交",
+    "loading": "載入中",
+    "select_hint": "請選擇",
+    "collapse": "收起",
+    "expand": "展開",
+    "number": "編號",
+    "status": "狀態",
+    "title": "標題",
+    "description": "描述",
+    "attachment": "附加物",
+    "send": "發送",
+    "confirm": "確定",
+    "no_data": "暫無資料",
+    "call_center": "客戶服務中心",
+    "click_to_upload": "點擊上傳",
+    "content_deleted": "此內容已被刪除",
+    "not_found": "此內容不存在",
+    "cancel": "取消",
+    "update_time": "更新時間",
+    "update_date": "更新日期",
+    "next_step": "下一步"
+  },
+  "home": {
+    "empty": "目前分類尚未設置展示內容"
+  },
+  "feedback": {
+    "suffix": "回饋",
+    "action": "我要回饋",
+    "record": "回饋記錄",
+    "submit": "提交回饋",
+    "title": "聯絡客戶服務",
+    "submit_ticket": "提交工單",
+    "wait_time": "預計等待時間：",
+    "hours": "{{value}} 小時",
+    "minutes": "{{value}} 分鐘"
+  },
+  "faqs": {
+    "showAll": "瀏覽全部",
+    "similar": "類似問題"
+  },
+  "notice": {
+    "title": "公告",
+    "hint": "若以上內容對您沒有幫助"
+  },
+  "auth": {
+    "not_logged_in_text": "偵測到您尚未登入帳號，請登入後再試"
+  },
+  "category": {
+    "select_hint": "選擇主題",
+    "select_hint_home": "選擇問題類型",
+    "faqs": "相關文章",
+    "title": "问题分类",
+    "classify": {
+      "placeholder": "例如：我忘記了密碼",
+      "title": "請簡要描述您的問題",
+      "loading": "正在檢索問題類別...",
+      "result": {
+        "title": "猜您的問題屬於",
+        "no_help": "若以上內容沒有幫助到您",
+        "select": "手動選擇問題類別",
+        "failed": "未匹配到相關結果",
+        "solution": "查看解決方案"
+      }
+    }
+  },
+  "topic": {
+    "title": "常見問題",
+    "hint": "若上述內容對您沒有幫助，可以"
+  },
+  "ticket": {
+    "record": "問題紀錄",
+    "no_record": "暫無問題記錄",
+    "no_more_record": "沒有更多紀錄",
+    "create": {
+      "success": "提交成功",
+      "success_text": "$t(ticket.create.success)，我們將儘快為您處理。"
+    },
+    "detail": "問題詳情",
+    "resolved": "已處理",
+    "unResolved": "進行中",
+    "contact": "聯絡客服"
+  },
+  "reply": {
+    "staff_title": "官方客服",
+    "my_title": "您",
+    "input_content_hint": "請輸入內容"
+  },
+  "status": {
+    "new": "待處理",
+    "waiting_on_staff": "等待客服回覆",
+    "waiting_on_customer": "等待使用者回覆",
+    "resolved": "已解決"
+  },
+  "evaluation": {
+    "title": "服務評價與回饋",
+    "useful": "有用",
+    "useless": "沒用",
+    "content_hint": "補充說明（非必填）",
+    "created_text": "您的評價已收到，感謝您的回饋！",
+    "change": "修改評價"
+  },
+  "validation": {
+    "required": "此內容不得為空",
+    "attachment_too_big": "上傳失敗",
+    "attachment_too_big_text": "附件大小不能超過 {{size}} {{unit}}",
+    "attachment_not_uploaded": "請等待附件上傳完成",
+    "number_required": "不可包含非數字字元",
+    "invalid": "輸入不合法"
+  },
+  "network_error": "網路異常，請嘗試重新連線",
+  "network_error.retry": "重新連線"
+}

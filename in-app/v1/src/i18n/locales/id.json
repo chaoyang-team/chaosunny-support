@@ -1,0 +1,101 @@
+{
+  "general": {
+    "commit": "Menyerahkan",
+    "loading": "Memuat",
+    "select_hint": "Silahkan pilih",
+    "collapse": "Runtuh",
+    "expand": "Perluas",
+    "number": "Nomor Ref.",
+    "status": "Status",
+    "title": "Judul",
+    "description": "Deskripsi",
+    "attachment": "Lampiran",
+    "send": "Kirim",
+    "confirm": "Tentu saja",
+    "no_data": "Tidak ada data",
+    "call_center": "Pusat Layanan Pelanggan",
+    "click_to_upload": "Klik untuk mengunggah",
+    "content_deleted": "Konten ini telah dihapus",
+    "not_found": "Konten ini tidak ada",
+    "cancel": "Batal",
+    "update_time": "Waktu Pembaruan",
+    "update_date": "Tanggal Pembaruan"
+  },
+  "home": {
+    "empty": "Tidak ada konten tampilan yang dikonfigurasi dalam kategori ini"
+  },
+  "feedback": {
+    "suffix": "Tanggapan",
+    "action": "Kirim Masukan",
+    "record": "Catatan Umpan Balik",
+    "submit": "Kirim Masukan",
+    "title": "Hubungi Layanan Pelanggan",
+    "submit_ticket": "Kirim Tiket",
+    "wait_time": "Perkiraan Waktu Tunggu:",
+    "hours": "{{value}} jam",
+    "minutes": "{{value}} menit"
+  },
+  "faqs": {
+    "showAll": "Lihat semua",
+    "similar": "Serupa Pertanyaan"
+  },
+  "notice": {
+    "title": "Pengumuman",
+    "hint": "Jika konten di atas tidak membantu Anda"
+  },
+  "auth": {
+    "not_logged_in_text": "Ditemukan bahwa Anda belum masuk ke akun, silahkan masuk dan coba lagi"
+  },
+  "category": {
+    "select_hint": "Pilih Topik",
+    "select_hint_home": "Pilih Jenis Masalah",
+    "faqs": "Artikel terkait",
+    "title": "Klasifikasi Pertanyaan"
+  },
+  "topic": {
+    "title": "Tanya Jawab Umum",
+    "hint": "Jika konten di atas tidak membantu Anda, Anda dapat"
+  },
+  "ticket": {
+    "record": "Catatan Masalah",
+    "no_record": "Tidak ada catatan masalah",
+    "no_more_record": "Tidak ada catatan lebih lanjut",
+    "create": {
+      "success": "Pengiriman berhasil",
+      "success_text": "$t(ticket.create.success), kami akan segera memprosesnya untuk Anda"
+    },
+    "detail": "Detail Pertanyaan",
+    "resolved": "Sudah diproses",
+    "unResolved": "Sedang diproses",
+    "contact": "Hubungi Layanan Pelanggan"
+  },
+  "reply": {
+    "staff_title": "Layanan Pelanggan Resmi",
+    "my_title": "Anda",
+    "input_content_hint": "Masukkan konten"
+  },
+  "status": {
+    "new": "Menunggu diproses",
+    "waiting_on_staff": "Menunggu balasan dari layanan pelanggan",
+    "waiting_on_customer": "Menunggu balasan pengguna",
+    "resolved": "Telah Diselesaikan"
+  },
+  "evaluation": {
+    "title": "Layanan Penilaian dan Umpan Balik",
+    "useful": "Berguna",
+    "useless": "Tidak berguna",
+    "content_hint": "Tambahan Keterangan (tidak wajib diisi)",
+    "created_text": "Terima kasih atas masukan Anda, terima kasih atas umpan balik Anda!",
+    "change": "Ubah Ulasan"
+  },
+  "validation": {
+    "required": "Konten ini tidak boleh kosong",
+    "attachment_too_big": "Gagal mengunggah",
+    "attachment_too_big_text": "Ukuran lampiran tidak boleh melebihi {{size}} {{unit}}",
+    "attachment_not_uploaded": "Harap tunggu hingga unggahan lampiran selesai",
+    "number_required": "Tidak boleh mengandung karakter non-angka",
+    "invalid": "Masukan tidak valid"
+  },
+  "network_error": "Koneksi internet bermasalah, silakan coba menyambungkan kembali",
+  "network_error.retry": "Sambungkan kembali"
+}

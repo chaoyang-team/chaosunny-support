@@ -1,0 +1,49 @@
+{
+    "schema": {
+        "value": {
+            "type": "Any"
+        },
+        "key": {
+            "type": "String"
+        },
+        "updatedAt": {
+            "type": "Date"
+        },
+        "createdAt": {
+            "type": "Date"
+        },
+        "ACL": {
+            "type": "ACL"
+        },
+        "objectId": {
+            "type": "String"
+        }
+    },
+    "permissions": {
+        "add_fields": {
+            "roles": [],
+            "users": []
+        },
+        "delete": {
+            "roles": [],
+            "users": []
+        },
+        "update": {
+            "roles": [],
+            "users": []
+        },
+        "get": {
+            "roles": [],
+            "users": []
+        },
+        "find": {
+            "roles": [],
+            "users": []
+        },
+        "create": {
+            "roles": [],
+            "users": []
+        }
+    },
+    "indexes": []
+}

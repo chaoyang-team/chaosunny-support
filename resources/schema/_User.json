@@ -1,0 +1,100 @@
+{
+  "schema": {
+    "objectId": {
+      "type": "String"
+    },
+    "username": {
+      "type": "String"
+    },
+    "name": {
+      "type": "String"
+    },
+    "email": {
+      "type": "String"
+    },
+    "inactive": {
+      "type": "Boolean",
+      "v": 2,
+      "required": false,
+      "hidden": false,
+      "read_only": false
+    },
+    "emailVerified": {
+      "type": "Boolean"
+    },
+    "categories": {
+      "v": 2,
+      "type": "Array"
+    },
+    "weixinHookUrl": {
+      "type": "String"
+    },
+    "mobilePhoneNumber": {
+      "type": "String"
+    },
+    "wechatEnterpriseUserId": {
+      "type": "String"
+    },
+    "authData": {
+      "hidden": true,
+      "type": "Object"
+    },
+    "thirdPartyData": {
+      "hidden": true,
+      "type": "Object"
+    },
+    "mobilePhoneVerified": {
+      "type": "Boolean"
+    },
+    "gravatarHash": {
+      "type": "String"
+    },
+    "ACL": {
+      "type": "ACL"
+    },
+    "createdAt": {
+      "type": "Date"
+    },
+    "updatedAt": {
+      "type": "Date"
+    },
+    "password": {
+      "type": "String"
+    },
+    "sessionToken": {
+      "type": "String"
+    },
+    "salt": {
+      "type": "String"
+    },
+    "tags": {
+      "type": "Array"
+    }
+  },
+  "permissions": {
+    "add_fields": {
+      "*": true
+    },
+    "delete": {
+      "roles": [],
+      "users": []
+    },
+    "update": {
+      "*": true
+    },
+    "get": {
+      "*": true
+    },
+    "find": {
+      "roles": [
+        "customerService"
+      ],
+      "users": []
+    },
+    "create": {
+      "roles": [],
+      "users": []
+    }
+  },
+  "indexes": []
+}

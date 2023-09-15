@@ -1,0 +1,34 @@
+.optionItem {
+  min-width: 50%;
+  margin-right: 0 !important;
+}
+
+.fileList {
+  list-style-type: none;
+  margin-bottom: 0px;
+  padding-left: 0px;
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100px;
+  }
+}
+
+.badge + .badge {
+  margin-left: 0.25rem;
+}
+.badge {
+  font-size: 90%;
+}
+
+.preview {
+  iframe {
+    border: none;
+    overflow: scroll;
+    max-width: 100%;
+  }
+}
